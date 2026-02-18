@@ -1,0 +1,12 @@
+
+DATASET_PARAMS:
+  db_name: "oil_spill" # dataset name
+  db_path: "./data/oil_spill_det_dataset" # dataset path
+  num_classes: 5
+
+MODEL_PARAMS:
+  model_config: "b0" # b0-5
+  model_path: "./weights/best.pth"
+
+OUTPUT_PATH:
+  results_path: "results/exp_1"  

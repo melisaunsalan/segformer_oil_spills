@@ -1,0 +1,24 @@
+RANDOMNESS:
+  torch_seed: 0
+  numpy_seed: 0
+
+EXPERIMENT:
+  name: "exp_1"
+  exp_path: "weights"
+
+DATASET_PARAMS:
+  db_name: "oil_spill" # dataset name
+  db_path: "data/oil_spill_det_dataset" # dataset path
+  num_classes: 5
+
+
+TRAIN_PARAMS:
+  num_epochs: 100
+  batch_size: 32
+  num_workers: 1
+  lr: 0.00005
+  loss_fn: "default" # default, dice, focal
+
+MODEL_PARAMS:
+  model_config: "b2" # b0-5
+  checkpoint: ~
