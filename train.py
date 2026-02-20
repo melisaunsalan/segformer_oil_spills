@@ -65,6 +65,11 @@ class SegFormerTrainer:
             model_checkpoint=model_checkpoint, model_config=model_config
         )
 
+        # Dump the cfg file under the experiment path for better traceability
+        cfg_save_path = os.path.join(config["EXPERIMENT"]["exp_path"], "config.yaml")
+        with open(cfg_save_path, 'w') as outfile:
+            yaml.dump(config, outfile, default_flow_style=False)
+
         # define the optimizer
         self.optimizer = self.__define_optimizer(
             learning_rate=config["TRAIN_PARAMS"]["lr"]
