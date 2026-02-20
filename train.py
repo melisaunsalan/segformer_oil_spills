@@ -16,7 +16,8 @@ from torch.utils.tensorboard import SummaryWriter
 
 from data.oil_spill_dataset import OilSpillDataset
 
-from utils.dice_loss import dice_loss, FocalLoss
+from utils.dice_loss import dice_loss
+from utils.focal_loss import FocalLoss
 
 class SegFormerTrainer:
     """
@@ -282,7 +283,7 @@ class SegFormerTrainer:
         self.model.train()
         total_loss = 0
 
-        for idx, batch in tqdm(enumerate(self.train_dataloader), desc="Training epoch"):
+        for idx, batch in tqdm(enumerate(self.train_dataloader), desc="Training epoch", total = len(self.train_dataloader)):
             loss = self.__train_step(batch.to(self.device))
             # Log training loss
             self.writer.add_scalar(
@@ -367,7 +368,7 @@ class SegFormerTrainer:
 
     def train(self):
         """Train model for all epochs"""
-        for epoch in tqdm(range(self.epochs)):
+        for epoch in range(self.epochs):
             print("Epoch:", epoch)
             self.__train_epoch(epoch)
             self.__validate(epoch)
