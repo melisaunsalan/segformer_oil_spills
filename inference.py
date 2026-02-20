@@ -34,15 +34,6 @@ if __name__ == '__main__':
     with open(args.config) as file:
         cfg = yaml.safe_load(file)
 
-    # Create the current experiment's path
-    experiments_path = cfg['EXPERIMENT']['exp_path']
-    exp_path = os.path.join(experiments_path, cfg['EXPERIMENT']['name'])
-
-    # Dump the cfg file under the experiment path for better traceability
-    cfg_save_path = os.path.join(exp_path, "config.yaml")
-    with open(cfg_save_path, 'w') as outfile:
-        yaml.dump(cfg, outfile, default_flow_style=False)
-
     # Init the image processor and transform
     image_processor = SegformerImageProcessor(do_rescale=False,
                                               do_normalize=False)
